@@ -13,10 +13,10 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-//Generate password
+// Getting information for password
 function buildPassword() {
   var passwordLengthAsk = parseInt(prompt("How many characters do you want in your password?"));
-  //does not work if you enter 0
+  //Check to make sure password is between requested amount
   if (passwordLengthAsk >= 8 && passwordLengthAsk <= 128) {
     console.log(passwordLengthAsk);
     console.log(typeof (passwordLengthAsk));
@@ -30,14 +30,14 @@ function buildPassword() {
   var upperCase = confirm("Do you want uppercase character in your password?");
   var specialCharacter = confirm("Do you want special characters in your password?");
 
-    //log in console to confirm we are getting the correct result
+    //Console log to confirm we are getting the correct result
     console.log(number);
     console.log(lowerCase);
     console.log(upperCase);
     console.log(specialCharacter);
     console.log(passwordLengthAsk);
 
-  // if no prompts are selected, returns alert
+  // If no prompts are selected, returns alert
   if (number === false && lowerCase === false && upperCase === false && specialCharacter === false) {
     alert("Can not provide password - Must select at least one type of character!");
     return;
@@ -54,20 +54,22 @@ function buildPassword() {
   return passwordOptions;
 }
 
-
+// Building the password
 function generatePassword() {
-  //will run through writePassword function
+  // Confirming it runs previous function first
   var options = buildPassword();
-  
+
+  // Assigning variables
   var lowerAlphabetChoices = ('abcdefghijklmnopqrstuvwxyz').split("");
   console.log(lowerAlphabetChoices); //check that it is returning an array
   var upperAlphabetChoices = ('ABCDEFGHIJKLMNOPQRSTUVWXYZ').split("");
   var numberChoices = ('0,1,2,3,4,5,6,7,8,9').split("");
   var specialCharacterChoices = ('!#$%&()*+,-./:;<=>?@[\]^_`{|}').split("");
-  var password = [];//equals an array
+  var password = [];
   var possibleCharacters = [];
   var choices = [];
-
+  
+  // Based on prompts selecting characters for password
   if (options.specialCharacter){
     possibleCharacters = possibleCharacters.concat(specialCharacterChoices);
     choices.push(randomletters(specialCharacterChoices));
@@ -88,7 +90,7 @@ function generatePassword() {
     choices.push(randomletters(numberChoices));
   }
 
-  //all the 71 -73 need to before
+  // Based on request length from user creating password
   for (let i = 0; i < options.length; i++) {
     var possibleCharacter = randomletters(possibleCharacters);
     password.push(possibleCharacter);   
@@ -100,6 +102,7 @@ function generatePassword() {
   
   return password.join("");
 
+  // Function generating random letters for password
   function randomletters(array){
     var randomIndex = Math.floor(Math.random() * array.length);
     var randElement = array[randomIndex];
