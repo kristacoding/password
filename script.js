@@ -106,6 +106,6 @@ function generatePassword() {
   function randomletters(array){
     var randomIndex = Math.floor(Math.random() * array.length);
     var randElement = array[randomIndex];
-    return randElement    
+    return randElement;    
   }
 }
